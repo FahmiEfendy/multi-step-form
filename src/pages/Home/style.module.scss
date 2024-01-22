@@ -26,8 +26,8 @@ body {
     margin: 0 auto;
 
     @include apply-at-lg-size {
-      height: 60%;
-      margin-top: 8rem;
+      height: 70%;
+      margin-top: 6rem;
     }
 
     .wrapper_left {
