@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Box, Container } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
 
+import { setStep } from "./action";
 import Step from "../../components/Step";
 import Step1 from "../../components/Step1";
 import Step2 from "../../components/Step2";
@@ -9,7 +11,9 @@ import Step4 from "../../components/Step4";
 import classes from "./style.module.scss";
 
 const Home = () => {
-  const [currentStep, setCurrentStep] = useState(1);
+  const dispatch = useDispatch();
+
+  const currentStep = useSelector((state) => state.homeReducer.step);
 
   const stepArr = [
     {
@@ -31,11 +35,11 @@ const Home = () => {
   ];
 
   const prevStepHandler = () => {
-    setCurrentStep((prevState) => prevState - 1);
+    dispatch(setStep(currentStep - 1));
   };
 
   const nextStepHandler = () => {
-    setCurrentStep((prevState) => prevState + 1);
+    dispatch(setStep(currentStep + 1));
   };
 
   const selectedStep = () => {
