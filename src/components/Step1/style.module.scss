@@ -1,40 +1,45 @@
 @import "../../styles/base.scss";
 
-h5 {
-  @include font($marine-blue, 30px, $font-weight-bold);
-}
+.container {
+  @include directionY;
+  height: 100%;
 
-.sub_heading {
-  @include font($cool-gray, 18px, $font-weight-regular);
-  margin-top: 1rem;
-}
+  .heading {
+    @include font($marine-blue, 30px, $font-weight-bold);
+  }
 
-.input_container {
-  margin-top: 2rem;
-
-  .input_wrapper {
-    @include directionY;
+  .sub_heading {
+    @include font($cool-gray, 18px, $font-weight-regular);
     margin-top: 1rem;
+  }
 
-    label {
-      @include font($marine-blue, 16px, $font-weight-medium);
-    }
+  .input_container {
+    margin-top: 2rem;
 
-    div {
-      margin-top: 0.2rem;
+    .input_wrapper {
+      @include directionY;
+      margin-top: 1rem;
 
-      input {
-        @include font($marine-blue, 18px, $font-weight-medium);
+      label {
+        @include font($marine-blue, 16px, $font-weight-medium);
+      }
+
+      div {
+        margin-top: 0.2rem;
+
+        input {
+          @include font($marine-blue, 18px, $font-weight-medium);
+        }
       }
     }
   }
-}
 
-.btn_next {
-  @include font($white, 18px, $font-weight-regular);
-  margin: auto 0 0 auto;
-  border-radius: 10px;
-  padding: 0.5rem 1.5rem;
-  background-color: $marine-blue;
-  text-transform: capitalize;
+  .btn_next {
+    @include font($white, 18px, $font-weight-regular);
+    margin: auto 0 0 auto;
+    border-radius: 10px;
+    padding: 0.5rem 1.5rem;
+    background-color: $marine-blue;
+    text-transform: capitalize;
+  }
 }

@@ -4,8 +4,10 @@ import classes from "./style.module.scss";
 
 const Step1 = () => {
   return (
-    <Box>
-      <Typography variant="h5">Personal info</Typography>
+    <Box className={classes.container}>
+      <Typography variant="h5" className={classes.heading}>
+        Personal info
+      </Typography>
       <Typography variant="body1" className={classes.sub_heading}>
         Please provide your name,email address, and phone number.
       </Typography>

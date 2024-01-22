@@ -5,8 +5,8 @@ $font-weight-medium: 500;
 $font-weight-bold: 700;
 
 @mixin font($color, $size, $weight) {
-  font-family: $font-ubuntu;
-  color: $color;
-  font-size: $size;
-  font-weight: $weight;
+  font-family: $font-ubuntu !important;
+  color: $color !important;
+  font-size: $size !important;
+  font-weight: $weight !important;
 }

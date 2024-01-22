@@ -29,7 +29,6 @@ body {
     }
 
     .wrapper_right {
-      @include directionY;
       width: 100%;
       padding: 2rem 7rem;
     }

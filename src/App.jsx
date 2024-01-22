@@ -3,6 +3,7 @@ import { Box, Container } from "@mui/material";
 
 import Step from "./components/Step";
 import Step1 from "./components/Step1";
+import Step2 from "./components/Step2";
 import classes from "./style.module.scss";
 
 function App() {
@@ -31,6 +32,11 @@ function App() {
     setCurrentStep(step);
   };
 
+  const selectedStep = () => {
+    if (currentStep === 1) return <Step1 />;
+    else if (currentStep === 2) return <Step2 />;
+  };
+
   return (
     <Container maxWidth="lg" className={classes.container}>
       <Box className={classes.container__inner}>
@@ -52,9 +58,7 @@ function App() {
             );
           })}
         </Box>
-        <Box className={classes.wrapper_right}>
-          <Step1 />
-        </Box>
+        <Box className={classes.wrapper_right}>{selectedStep()}</Box>
       </Box>
     </Container>
   );
