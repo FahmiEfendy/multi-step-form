@@ -38,7 +38,11 @@
 
         a {
           cursor: pointer;
-          @include font("", 16px, $font-weight-regular);
+          @include font($cool-gray, 16px, $font-weight-regular);
+        }
+
+        a:hover {
+          @include font($purplish-blue, 16px, $font-weight-regular);
         }
       }
 
@@ -88,6 +92,7 @@
       border-radius: 10px;
       padding: 0.5rem 1.5rem;
       text-transform: capitalize;
+      background-color: transparent;
     }
 
     .btn_next {

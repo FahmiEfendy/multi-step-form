@@ -38,6 +38,7 @@ const Step1 = () => {
         Please provide your name,email address, and phone number.
       </Typography>
       <Box className={classes.input_container}>
+        {/* TODO: Add Form Label When Error */}
         <Box className={classes.input_wrapper}>
           <FormLabel>Name</FormLabel>
           <TextField

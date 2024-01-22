@@ -11,7 +11,7 @@ export const initialState = {
     },
     plan: {
       option: "",
-      price: "",
+      price: 0,
       isMonthlyPlan: true,
     },
     addOns: [],

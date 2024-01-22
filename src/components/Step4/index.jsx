@@ -36,7 +36,11 @@ const Step4 = ({ prevStepHandler }) => {
                 <Link>Change</Link>
               </Box>
               <Typography variant="body1" className={classes.summary_price}>
-                {priceFormatter(formData.plan.price)}
+                {priceFormatter(
+                  formData.plan.price,
+                  true,
+                  formData.plan.isMonthlyPlan ? false : true
+                )}
               </Typography>
             </Box>
             <Divider />
@@ -57,7 +61,9 @@ const Step4 = ({ prevStepHandler }) => {
                       variant="body1"
                       className={classes.summary_price}
                     >
-                      {priceFormatter(data.price, true)}
+                      {formData.plan.isMonthlyPlan
+                        ? priceFormatter(data.monthlyPrice, true)
+                        : priceFormatter(data.yearlyPrice, true, true)}
                     </Typography>
                   </Box>
                 );
@@ -69,7 +75,11 @@ const Step4 = ({ prevStepHandler }) => {
               Total (per {formData.plan.isMonthlyPlan ? "month" : "year"})
             </Typography>
             <Typography variant="h5">
-              {priceFormatter(totalPrice, true)}
+              {priceFormatter(
+                totalPrice,
+                true,
+                formData.plan.isMonthlyPlan ? false : true
+              )}
             </Typography>
           </Box>
           <Box className={classes.btn_wrapper}>

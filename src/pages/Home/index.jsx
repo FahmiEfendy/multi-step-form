@@ -52,7 +52,13 @@ const Home = () => {
   useEffect(() => {
     let price = 0;
     price += formData.plan.price;
-    formData.addOns.map((data) => (price += data.price));
+    formData.addOns.map((data) => {
+      if (formData.plan.isMonthlyPlan) {
+        price += data.monthlyPrice;
+      } else {
+        price += data.yearlyPrice;
+      }
+    });
 
     dispatch(setPrice(price));
   }, [formData]);

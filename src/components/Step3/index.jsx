@@ -28,17 +28,20 @@ const Step3 = ({ prevStepHandler }) => {
     {
       title: "Online Service",
       desc: "Access to multiplayer games",
-      price: 1,
+      monthlyPrice: 1,
+      yearlyPrice: 10,
     },
     {
       title: "Larger Storage",
       desc: "Extra 1TB of cloud save",
-      price: 2,
+      monthlyPrice: 2,
+      yearlyPrice: 20,
     },
     {
       title: "Customizable Profile",
       desc: "Custom theme on your profile",
-      price: 2,
+      monthlyPrice: 2,
+      yearlyPrice: 20,
     },
   ];
 
@@ -74,9 +77,16 @@ const Step3 = ({ prevStepHandler }) => {
       </Typography>
       <List className={classes.list_container}>
         {addOnsArr.map((data, index) => {
+          let isSelected = checked.find((c) => c.title === data.title);
+
           return (
-            // TODO: Fix Styling When Selected
-            <ListItem key={index} className={classes.list_wrapper}>
+            // TODO: Remove Background Color When Hovered
+            <ListItem
+              key={index}
+              className={
+                !isSelected ? classes.list_wrapper : classes.list_wrapper_active
+              }
+            >
               <ListItemButton
                 onClick={() => {
                   getAddOnsHandler(data);
@@ -93,7 +103,11 @@ const Step3 = ({ prevStepHandler }) => {
                   <ListItemText primary={data.desc} className={classes.desc} />
                 </Box>
                 <ListItemText
-                  primary={priceFormatter(data.price, true)}
+                  primary={
+                    formData.plan.isMonthlyPlan
+                      ? priceFormatter(data.monthlyPrice, true)
+                      : priceFormatter(data.yearlyPrice, true, true)
+                  }
                   className={classes.price}
                 />
               </ListItemButton>

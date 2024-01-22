@@ -21,17 +21,20 @@ const Step2 = ({ prevStepHandler }) => {
   const planArr = [
     {
       type: "Arcade",
-      price: 9,
+      monthlyPrice: 9,
+      yearlyPrice: 90,
       icon: ArcadeIcon,
     },
     {
       type: "Advanced",
-      price: 12,
+      monthlyPrice: 12,
+      yearlyPrice: 120,
       icon: AdvancedIcon,
     },
     {
       type: "Pro",
-      price: 15,
+      monthlyPrice: 15,
+      yearlyPrice: 150,
       icon: ProIcon,
     },
   ];
@@ -78,8 +81,17 @@ const Step2 = ({ prevStepHandler }) => {
               item
               key={index}
               xl={4}
-              className={classes.grid_item}
-              onClick={() => getSelectedPlanHandler(data.type, data.price)}
+              className={
+                selectedPlan.plan === data.type
+                  ? classes.grid_item_active
+                  : classes.grid_item
+              }
+              onClick={() =>
+                getSelectedPlanHandler(
+                  data.type,
+                  isMonthlyPlan ? data.monthlyPrice : data.yearlyPrice
+                )
+              }
             >
               <img src={data.icon} alt={data.type} />
               <Box className={classes.text_wrapper}>
@@ -87,7 +99,12 @@ const Step2 = ({ prevStepHandler }) => {
                   {data.type}
                 </Typography>
                 <Typography variant="body1" className={classes.text_price}>
-                  {priceFormatter(data.price)}
+                  {isMonthlyPlan
+                    ? priceFormatter(data.monthlyPrice)
+                    : priceFormatter(data.yearlyPrice, false, true)}
+                </Typography>
+                <Typography variant="body1" className={classes.text_free}>
+                  {!isMonthlyPlan && "2 months free"}
                 </Typography>
               </Box>
             </Grid>
@@ -115,7 +132,9 @@ const Step2 = ({ prevStepHandler }) => {
         </Typography>
       </Box>
       <Box className={classes.btn_wrapper}>
-        <Button onClick={prevStepHandler}>Go Back</Button>
+        <Button className={classes.btn_back} onClick={prevStepHandler}>
+          Go Back
+        </Button>
         <Button className={classes.btn_next} onClick={goStep3Handler}>
           Next Step
         </Button>

@@ -18,10 +18,11 @@
 
     .grid_item {
       @include directionY;
-      border: 1px solid $cool-gray;
+      border: 1px solid $light-gray;
       border-radius: 15px;
       padding: 1rem;
       height: 180px;
+      cursor: pointer;
 
       img {
         width: 40px;
@@ -38,7 +39,21 @@
         .text_price {
           @include font($cool-gray, 14px, $font-weight-regular);
         }
+
+        .text_free {
+          @include font($marine-blue, 14px, $font-weight-regular);
+        }
       }
+    }
+
+    .grid_item:hover {
+      border: 1px solid $marine-blue;
+    }
+
+    .grid_item_active {
+      @extend .grid_item;
+      border: 1px solid $marine-blue;
+      background-color: $magnolia;
     }
   }
 
@@ -71,6 +86,11 @@
       border-radius: 10px;
       padding: 0.5rem 1.5rem;
       text-transform: capitalize;
+      background-color: transparent;
+    }
+
+    .btn_back:hover {
+      @include font($marine-blue, 18px, $font-weight-medium);
     }
 
     .btn_next {

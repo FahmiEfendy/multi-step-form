@@ -1,3 +1,3 @@
-export const priceFormatter = (price, plus = false) => {
-  return `${plus ? "+" : ""}` + "$" + String(price) + "/mo";
+export const priceFormatter = (price, plus = false, year = false) => {
+  return `${plus ? "+" : ""}` + "$" + String(price) + `${year ? "/yr" : "/mo"}`;
 };

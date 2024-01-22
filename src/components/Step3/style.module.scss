@@ -16,31 +16,44 @@
   .list_container {
     .list_wrapper {
       @include directionX;
-      border: 1px solid $marine-blue;
+      border: 1px solid $light-gray;
       border-radius: 10px;
       margin-top: 1rem;
       padding: 1rem;
 
+      div:hover {
+        background-color: none;
+      }
+
       .text_wrapper {
         @include directionY;
 
-        div{
-            margin: 0
+        div {
+          margin: 0;
         }
 
         .title span {
           @include font($marine-blue, 18px, $font-weight-bold);
         }
-        
+
         .desc span {
-            @include font($cool-gray, 16px, $font-weight-medium);
+          @include font($cool-gray, 16px, $font-weight-medium);
         }
       }
 
       .price span {
         @include font($purplish-blue, 16px, $font-weight-medium);
-        text-align: end
+        text-align: end;
       }
+    }
+
+    .list_wrapper:hover {
+      border-color: $cool-gray;
+    }
+
+    .list_wrapper_active {
+      @extend .list_wrapper;
+      background-color: $magnolia;
     }
   }
 
@@ -55,6 +68,7 @@
       border-radius: 10px;
       padding: 0.5rem 1.5rem;
       text-transform: capitalize;
+      background-color: transparent;
     }
 
     .btn_next {
