@@ -4,6 +4,7 @@ import { Box, Button, FormLabel, TextField, Typography } from "@mui/material";
 
 import classes from "./style.module.scss";
 import { setForm, setStep } from "../../pages/Home/action";
+import { emailValidator } from "../../utils/emailValidator";
 
 const Step1 = () => {
   const dispatch = useDispatch();
@@ -18,6 +19,7 @@ const Step1 = () => {
   const [email, setEmail] = useState({
     value: formData.info.email,
     isError: false,
+    isNotValid: false,
   });
   const [phone, setPhone] = useState({
     value: formData.info.phone,
@@ -34,6 +36,11 @@ const Step1 = () => {
 
     if (email.value === "") {
       setEmail((prevState) => ({ ...prevState, isError: true }));
+      isValid = false;
+    }
+
+    if (!emailValidator(email.value)) {
+      setEmail((prevState) => ({ ...prevState, isNotValid: true }));
       isValid = false;
     }
 
@@ -97,9 +104,11 @@ const Step1 = () => {
         <Box className={classes.input_wrapper}>
           <Box className={classes.input_label}>
             <FormLabel>Email Address</FormLabel>
-            {email.isError && (
+            {(email.isError || email.isNotValid) && (
               <FormLabel className={classes.label_error}>
-                This field is required
+                {email.isError
+                  ? "This field is required"
+                  : email.isNotValid && "Email is invalid!"}
               </FormLabel>
             )}
           </Box>
@@ -109,10 +118,11 @@ const Step1 = () => {
             placeholder="e.g. stephenking@lorem.com"
             value={email.value}
             onChange={(e) => {
-              setEmail({
+              setEmail((prevState) => ({
+                ...prevState,
                 value: e.target.value,
                 isError: e.target.value.length === 0 ? true : false,
-              });
+              }));
             }}
           />
         </Box>
