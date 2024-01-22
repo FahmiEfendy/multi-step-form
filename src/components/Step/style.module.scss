@@ -31,6 +31,10 @@
   .detail {
     margin-left: 1rem;
 
+    @include apply-at-lg-size {
+      display: none;
+    }
+
     .sub_text {
       @include font($cool-gray, 14px, $font-weight-regular);
     }

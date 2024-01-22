@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
 import { useDispatch, useSelector } from "react-redux";
 import { Box, Button, Grid, Typography } from "@mui/material";
 
@@ -12,6 +14,9 @@ import { priceFormatter } from "../../utils/priceFormatter";
 
 const Step2 = ({ prevStepHandler }) => {
   const dispatch = useDispatch();
+  const theme = useTheme();
+
+  const matchMediumScreen = useMediaQuery(theme.breakpoints.up("md"));
 
   const formData = useSelector((state) => state.homeReducer.form);
   const currentStep = useSelector((state) => state.homeReducer.step);
@@ -94,7 +99,7 @@ const Step2 = ({ prevStepHandler }) => {
       </Typography>
       <Grid
         container
-        wrap="nowrap"
+        wrap={matchMediumScreen ? "nowrap" : "wrap"}
         columnGap={4}
         className={classes.grid_container}
       >
@@ -103,7 +108,8 @@ const Step2 = ({ prevStepHandler }) => {
             <Grid
               item
               key={index}
-              xl={4}
+              lg={4}
+              xs={12}
               className={activePlanStyle(data) + " " + getActivePlanStyle(data)}
               onClick={() =>
                 getSelectedPlanHandler(
@@ -161,6 +167,7 @@ const Step2 = ({ prevStepHandler }) => {
           Next Step
         </Button>
       </Box>
+      <Box className={classes.btn_backdrop} />
     </Box>
   );
 };

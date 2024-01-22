@@ -87,12 +87,23 @@
     width: 100%;
     justify-content: space-between;
 
+    @include apply-at-lg-size {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      left: 0;
+    }
+
     button {
       @include font($cool-gray, 18px, $font-weight-medium);
       border-radius: 10px;
       padding: 0.5rem 1.5rem;
       text-transform: capitalize;
       background-color: transparent;
+
+      @include apply-at-lg-size {
+        margin: 1.5rem 1rem !important;
+      }
     }
 
     .btn_next {
@@ -104,6 +115,18 @@
 
     .btn_next:hover {
       background-color: $pastel-blue;
+    }
+  }
+
+  .btn_backdrop {
+    @include apply-at-lg-size {
+      height: 100px;
+      width: 100%;
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      background-color: $white;
+      z-index: -1;
     }
   }
 }

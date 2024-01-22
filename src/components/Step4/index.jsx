@@ -88,6 +88,7 @@ const Step4 = ({ prevStepHandler }) => {
               Confirm
             </Button>
           </Box>
+          <Box className={classes.btn_backdrop} />
         </Box>
       ) : (
         <Box className={classes.container_success}>

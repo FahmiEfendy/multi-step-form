@@ -12,6 +12,10 @@ body {
   width: 100vw;
   margin: auto;
 
+  @include apply-at-lg-size {
+    justify-content: flex-start;
+  }
+
   .container__inner {
     @include directionX;
     background-color: $white;
@@ -19,6 +23,12 @@ body {
     width: 90%;
     height: 70%;
     padding: 1rem;
+    margin: 0 auto;
+
+    @include apply-at-lg-size {
+      height: 45%;
+      margin-top: 8rem;
+    }
 
     .wrapper_left {
       width: 50%;
@@ -26,11 +36,38 @@ body {
       background-repeat: no-repeat;
       background-size: cover;
       border-radius: 10px;
+
+      @include apply-at-lg-size {
+        @include directionX;
+        background-image: url("../../assets/bg-sidebar-mobile.svg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: absolute;
+        border-radius: 0;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 25%;
+        z-index: -1;
+        justify-content: center;
+      }
     }
 
     .wrapper_right {
       width: 100%;
       padding: 2rem 7rem;
+
+      @include apply-at-lg-size {
+        padding: 2rem 3rem;
+      }
+
+      @include apply-at-md-size {
+        padding: 2rem 1.5rem;
+      }
+
+      @include apply-at-sm-size {
+        padding: 1rem .5rem;
+      }
     }
   }
 }

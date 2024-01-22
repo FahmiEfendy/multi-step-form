@@ -80,6 +80,7 @@ const Step1 = () => {
       >
         Next Step
       </Button>
+      <Box className={classes.btn_backdrop} />
     </Box>
   );
 };

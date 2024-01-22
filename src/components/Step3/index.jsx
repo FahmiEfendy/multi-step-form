@@ -120,6 +120,7 @@ const Step3 = ({ prevStepHandler }) => {
           Next Step
         </Button>
       </Box>
+      <Box className={classes.btn_backdrop} />
     </Box>
   );
 };
