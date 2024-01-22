@@ -50,6 +50,7 @@ const Step2 = ({ prevStepHandler }) => {
 
   const switchChangeHandler = () => {
     setIsMonthlyPlan((prevState) => !prevState);
+    setSelectedPlan((prevState) => ({ ...prevState, option: "" }));
   };
 
   const getSelectedPlanHandler = (plan, price) => {
@@ -122,7 +123,6 @@ const Step2 = ({ prevStepHandler }) => {
         columnGap={4}
         className={classes.grid_container}
       >
-        {/* TODO: Fix Get Latest Price When Toggle Switch */}
         {planArr.map((data, index) => {
           return (
             <Grid
