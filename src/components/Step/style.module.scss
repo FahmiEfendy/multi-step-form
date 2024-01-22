@@ -1,0 +1,43 @@
+@import "../../styles/base.scss";
+
+.wrapper_step {
+  @include directionX;
+  margin: 2rem 0 0 2rem;
+  cursor: pointer;
+
+  .circle {
+    @include directionX;
+    border: 1px solid $white;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+
+    p {
+      @include font($white, 18px, $font-weight-medium);
+    }
+  }
+
+  .circle_active {
+    background-color: $pastel-blue;
+    color: $white;
+    border: none;
+
+    p {
+      @include font($marine-blue, 18px, $font-weight-medium);
+    }
+  }
+
+  .detail {
+    margin-left: 1rem;
+
+    .sub_text {
+      @include font($cool-gray, 14px, $font-weight-regular);
+    }
+
+    .text {
+      @include font($white, 16px, $font-weight-medium);
+    }
+  }
+}
