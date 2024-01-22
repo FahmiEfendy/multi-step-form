@@ -13,50 +13,34 @@
     margin-top: 1rem;
   }
 
-  .grid_container {
-    margin-top: 2rem;
-
-    .grid_item {
-      @include directionY;
-      border: 1px solid $cool-gray;
-      border-radius: 15px;
+  .list_container {
+    .list_wrapper {
+      @include directionX;
+      border: 1px solid $marine-blue;
+      border-radius: 10px;
+      margin-top: 1rem;
       padding: 1rem;
-      height: 180px;
-
-      img {
-        width: 40px;
-        height: 40px;
-      }
 
       .text_wrapper {
-        margin-top: auto;
+        @include directionY;
 
-        .text_type {
+        div{
+            margin: 0
+        }
+
+        .title span {
           @include font($marine-blue, 18px, $font-weight-bold);
         }
-
-        .text_price {
-          @include font($cool-gray, 14px, $font-weight-regular);
+        
+        .desc span {
+            @include font($cool-gray, 16px, $font-weight-medium);
         }
       }
-    }
-  }
 
-  .switcher_wrapper {
-    @include directionX;
-    background-color: $magnolia;
-    height: 50px;
-    border-radius: 10px;
-    justify-content: center;
-    align-items: center;
-    margin-top: 2rem;
-
-    .switcher_text {
-      @include font($cool-gray, 16px, $font-weight-medium);
-    }
-
-    .switcher_text_active {
-      @include font($marine-blue, 16px, $font-weight-medium);
+      .price span {
+        @include font($purplish-blue, 16px, $font-weight-medium);
+        text-align: end
+      }
     }
   }
 
