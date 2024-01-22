@@ -21,6 +21,7 @@ const Step2 = ({ prevStepHandler }) => {
   const formData = useSelector((state) => state.homeReducer.form);
   const currentStep = useSelector((state) => state.homeReducer.step);
 
+  const [isError, setIsError] = useState(false);
   const [selectedPlan, setSelectedPlan] = useState(formData.plan);
   const [isMonthlyPlan, setIsMonthlyPlan] = useState(
     formData.plan.isMonthlyPlan
@@ -55,7 +56,25 @@ const Step2 = ({ prevStepHandler }) => {
     setSelectedPlan({ isMonthlyPlan, option: plan, price });
   };
 
+  const formValidation = () => {
+    let isValid = true;
+
+    if (selectedPlan.option === "") {
+      setIsError(true);
+      isValid = false;
+    } else {
+      setIsError(false);
+      isValid = true;
+    }
+
+    return isValid;
+  };
+
   const goStep3Handler = () => {
+    const isFormValid = formValidation();
+
+    if (!isFormValid) return;
+
     dispatch(
       setForm({
         ...formData,
@@ -103,6 +122,7 @@ const Step2 = ({ prevStepHandler }) => {
         columnGap={4}
         className={classes.grid_container}
       >
+        {/* TODO: Fix Get Latest Price When Toggle Switch */}
         {planArr.map((data, index) => {
           return (
             <Grid
@@ -136,6 +156,11 @@ const Step2 = ({ prevStepHandler }) => {
           );
         })}
       </Grid>
+      {isError && (
+        <Typography variant="body1" className={classes.error}>
+          You should pick at least one plan above!
+        </Typography>
+      )}
       <Box className={classes.switcher_wrapper}>
         <Typography
           variant="body1"

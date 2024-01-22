@@ -72,6 +72,11 @@
     }
   }
 
+  .error {
+    @include font(red, 16px, $font-weight-regular);
+    margin-top: .5rem;
+  }
+
   .switcher_wrapper {
     @include directionX;
     background-color: $magnolia;

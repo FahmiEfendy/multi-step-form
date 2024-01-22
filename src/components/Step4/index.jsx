@@ -1,16 +1,23 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Box, Button, Divider, Link, Typography } from "@mui/material";
 
 import classes from "./style.module.scss";
+import { setStep } from "../../pages/Home/action";
 import ThankYouIcon from "../../assets/icon-thank-you.svg";
 import { priceFormatter } from "../../utils/priceFormatter";
 
 const Step4 = ({ prevStepHandler }) => {
+  const dispatch = useDispatch();
+
   const [isSuccess, setIsSuccess] = useState(false);
 
   const formData = useSelector((state) => state.homeReducer.form);
   const totalPrice = useSelector((state) => state.homeReducer.totalPrice);
+
+  const goStep2Handler = () => {
+    dispatch(setStep(2));
+  };
 
   const confirmHandler = () => {
     setIsSuccess(true);
@@ -33,7 +40,7 @@ const Step4 = ({ prevStepHandler }) => {
                   {formData.plan.option} (
                   {formData.plan.isMonthlyPlan ? "Monthly" : "Yearly"})
                 </Typography>
-                <Link>Change</Link>
+                <Link onClick={goStep2Handler}>Change</Link>
               </Box>
               <Typography variant="body1" className={classes.summary_price}>
                 {priceFormatter(

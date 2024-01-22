@@ -20,8 +20,17 @@
       @include directionY;
       margin-top: 1rem;
 
-      label {
-        @include font($marine-blue, 16px, $font-weight-medium);
+      .input_label {
+        @include directionX;
+        justify-content: space-between;
+
+        .label_error {
+          color: red !important;
+        }
+
+        label {
+          @include font($marine-blue, 16px, $font-weight-medium);
+        }
       }
 
       div {
@@ -30,6 +39,9 @@
         input {
           @include font($marine-blue, 18px, $font-weight-medium);
         }
+      }
+      .error input {
+        border: 1px solid red;
       }
     }
   }

@@ -50,7 +50,7 @@ const Step3 = ({ prevStepHandler }) => {
 
     if (valueExist) {
       setChecked((prevState) =>
-        prevState.filter((data) => data.title === value.title)
+        prevState.filter((data) => data.title !== value.title)
       );
     } else {
       setChecked([...checked, value]);
@@ -82,7 +82,6 @@ const Step3 = ({ prevStepHandler }) => {
       <List className={classes.list_container}>
         {addOnsArr.map((data, index) => {
           let isSelected = checked.find((c) => c.title === data.title);
-
           return (
             <ListItem key={index} className={activeAddOnStyle(isSelected)}>
               <ListItemButton
