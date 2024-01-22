@@ -5,6 +5,7 @@ import Step from "./components/Step";
 import Step1 from "./components/Step1";
 import Step2 from "./components/Step2";
 import Step3 from "./components/Step3";
+import Step4 from "./components/Step4";
 import classes from "./style.module.scss";
 
 function App() {
@@ -37,6 +38,7 @@ function App() {
     if (currentStep === 1) return <Step1 />;
     else if (currentStep === 2) return <Step2 />;
     else if (currentStep === 3) return <Step3 />;
+    else if (currentStep === 4) return <Step4 />;
   };
 
   return (
