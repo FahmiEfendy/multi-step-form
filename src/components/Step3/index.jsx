@@ -22,7 +22,7 @@ const Step3 = ({ prevStepHandler }) => {
   const formData = useSelector((state) => state.homeReducer.form);
   const currentStep = useSelector((state) => state.homeReducer.step);
 
-  const [checked, setChecked] = useState([]);
+  const [checked, setChecked] = useState(formData.addOns);
 
   const addOnsArr = [
     {
@@ -67,6 +67,10 @@ const Step3 = ({ prevStepHandler }) => {
     dispatch(setStep(currentStep + 1));
   };
 
+  const activeAddOnStyle = (isSelected) => {
+    return !isSelected ? classes.list_wrapper : classes.list_wrapper_active;
+  };
+
   return (
     <Box className={classes.container}>
       <Typography variant="h5" className={classes.heading}>
@@ -81,19 +85,14 @@ const Step3 = ({ prevStepHandler }) => {
 
           return (
             // TODO: Remove Background Color When Hovered
-            <ListItem
-              key={index}
-              className={
-                !isSelected ? classes.list_wrapper : classes.list_wrapper_active
-              }
-            >
+            <ListItem key={index} className={activeAddOnStyle(isSelected)}>
               <ListItemButton
                 onClick={() => {
                   getAddOnsHandler(data);
                 }}
               >
                 <ListItemIcon>
-                  <Checkbox />
+                  <Checkbox checked={Boolean(isSelected)} />
                 </ListItemIcon>
                 <Box className={classes.text_wrapper}>
                   <ListItemText

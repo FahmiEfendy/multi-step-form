@@ -11,9 +11,9 @@ const Step1 = () => {
   const formData = useSelector((state) => state.homeReducer.form);
   const currentStep = useSelector((state) => state.homeReducer.step);
 
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
+  const [name, setName] = useState(formData.info.name);
+  const [email, setEmail] = useState(formData.info.email);
+  const [phone, setPhone] = useState(formData.info.phone);
 
   const goStep2Handler = () => {
     dispatch(
@@ -44,6 +44,7 @@ const Step1 = () => {
           <TextField
             type="text"
             placeholder="e.g. Stephen King"
+            value={name}
             onChange={(e) => {
               setName(e.target.value);
             }}
@@ -54,6 +55,7 @@ const Step1 = () => {
           <TextField
             type="email"
             placeholder="e.g. stephenking@lorem.com"
+            value={email}
             onChange={(e) => {
               setEmail(e.target.value);
             }}
@@ -64,6 +66,7 @@ const Step1 = () => {
           <TextField
             type="number"
             placeholder="e.g. +1 234 567 890"
+            value={phone}
             onChange={(e) => {
               setPhone(e.target.value);
             }}

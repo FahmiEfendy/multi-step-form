@@ -15,8 +15,10 @@ const Step2 = ({ prevStepHandler }) => {
   const formData = useSelector((state) => state.homeReducer.form);
   const currentStep = useSelector((state) => state.homeReducer.step);
 
-  const [selectedPlan, setSelectedPlan] = useState([]);
-  const [isMonthlyPlan, setIsMonthlyPlan] = useState(true);
+  const [selectedPlan, setSelectedPlan] = useState(formData.plan);
+  const [isMonthlyPlan, setIsMonthlyPlan] = useState(
+    formData.plan.isMonthlyPlan
+  );
 
   const planArr = [
     {
@@ -44,7 +46,7 @@ const Step2 = ({ prevStepHandler }) => {
   };
 
   const getSelectedPlanHandler = (plan, price) => {
-    setSelectedPlan({ plan, price });
+    setSelectedPlan({ isMonthlyPlan, option: plan, price });
   };
 
   const goStep3Handler = () => {
@@ -52,13 +54,33 @@ const Step2 = ({ prevStepHandler }) => {
       setForm({
         ...formData,
         plan: {
-          option: selectedPlan.plan,
+          option: selectedPlan.option,
           price: selectedPlan.price,
           isMonthlyPlan: isMonthlyPlan,
         },
       })
     );
     dispatch(setStep(currentStep + 1));
+  };
+
+  const activePlanStyle = (data) => {
+    if (selectedPlan.option === data.type) {
+      return classes.grid_item_active;
+    } else {
+      return classes.grid_item;
+    }
+  };
+
+  const getActivePlanStyle = (data) => {
+    if (selectedPlan.option !== "" && formData.plan.option !== "") {
+      if (
+        selectedPlan.option === formData.plan.option &&
+        formData.plan.option === data.type
+      ) {
+        return classes.grid_item_active;
+      }
+    }
+    return classes.grid_item;
   };
 
   return (
@@ -81,11 +103,7 @@ const Step2 = ({ prevStepHandler }) => {
               item
               key={index}
               xl={4}
-              className={
-                selectedPlan.plan === data.type
-                  ? classes.grid_item_active
-                  : classes.grid_item
-              }
+              className={activePlanStyle(data) + " " + getActivePlanStyle(data)}
               onClick={() =>
                 getSelectedPlanHandler(
                   data.type,
@@ -121,7 +139,7 @@ const Step2 = ({ prevStepHandler }) => {
           Monthly
         </Typography>
         {/* TODO: Fix Styling */}
-        <Switch onChange={switchChangeHandler} />
+        <Switch checked={!isMonthlyPlan} onChange={switchChangeHandler} />
         <Typography
           variant="body1"
           className={
