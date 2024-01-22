@@ -1,0 +1,9 @@
+@mixin directionX {
+  display: flex !important;
+}
+
+@mixin directionY {
+  display: flex !important;
+  flex-direction: column !important;
+}
+

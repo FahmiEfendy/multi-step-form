@@ -1,0 +1,42 @@
+$screen-xs-limit: 425px;
+$screen-sm-limit: 576px;
+$screen-md-limit: 768px;
+$screen-lg-limit: 992px;
+$screen-xl-limit: 1200px;
+$screen-xxl-limit: 1400px;
+
+@mixin apply-at-xs-size {
+  @media (max-width: $screen-xs-limit) {
+    @content;
+  }
+}
+
+@mixin apply-at-sm-size {
+  @media (max-width: $screen-sm-limit) {
+    @content;
+  }
+}
+
+@mixin apply-at-md-size {
+  @media (max-width: $screen-md-limit) {
+    @content;
+  }
+}
+
+@mixin apply-at-lg-size {
+  @media (max-width: $screen-lg-limit) {
+    @content;
+  }
+}
+
+@mixin apply-at-xl-size {
+  @media (max-width: $screen-xl-limit) {
+    @content;
+  }
+}
+
+@mixin apply-at-xxl-size {
+  @media (max-width: $screen-xxl-limit) {
+    @content;
+  }
+}
