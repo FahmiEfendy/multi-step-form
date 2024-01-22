@@ -3,7 +3,6 @@
 .wrapper_step {
   @include directionX;
   margin: 2rem 0 0 2rem;
-  cursor: pointer;
 
   .circle {
     @include directionX;

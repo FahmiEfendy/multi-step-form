@@ -2,7 +2,7 @@ import { Box, Button, FormLabel, TextField, Typography } from "@mui/material";
 
 import classes from "./style.module.scss";
 
-const Step1 = () => {
+const Step1 = ({ nextStepHandler }) => {
   return (
     <Box className={classes.container}>
       <Typography variant="h5" className={classes.heading}>
@@ -25,7 +25,11 @@ const Step1 = () => {
           <TextField type="number" placeholder="e.g. +1 234 567 890" />
         </Box>
       </Box>
-      <Button variant="contained" className={classes.btn_next}>
+      <Button
+        variant="contained"
+        className={classes.btn_next}
+        onClick={nextStepHandler}
+      >
         Next Step
       </Button>
     </Box>

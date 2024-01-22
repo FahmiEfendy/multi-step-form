@@ -11,7 +11,7 @@ import {
 
 import classes from "./style.module.scss";
 
-const Step3 = () => {
+const Step3 = ({ prevStepHandler, nextStepHandler }) => {
   const addOnsArr = [
     {
       title: "Online Service",
@@ -56,8 +56,10 @@ const Step3 = () => {
         })}
       </List>
       <Box className={classes.btn_wrapper}>
-        <Button>Go Back</Button>
-        <Button className={classes.btn_next}>Next Step</Button>
+        <Button onClick={prevStepHandler}>Go Back</Button>
+        <Button className={classes.btn_next} onClick={nextStepHandler}>
+          Next Step
+        </Button>
       </Box>
     </Box>
   );

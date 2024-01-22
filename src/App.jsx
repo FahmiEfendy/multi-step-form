@@ -30,14 +30,30 @@ function App() {
     },
   ];
 
-  const changeStepHandler = (step) => {
-    setCurrentStep(step);
+  const prevStepHandler = () => {
+    setCurrentStep((prevState) => prevState - 1);
+  };
+
+  const nextStepHandler = () => {
+    setCurrentStep((prevState) => prevState + 1);
   };
 
   const selectedStep = () => {
-    if (currentStep === 1) return <Step1 />;
-    else if (currentStep === 2) return <Step2 />;
-    else if (currentStep === 3) return <Step3 />;
+    if (currentStep === 1) return <Step1 nextStepHandler={nextStepHandler} />;
+    else if (currentStep === 2)
+      return (
+        <Step2
+          prevStepHandler={prevStepHandler}
+          nextStepHandler={nextStepHandler}
+        />
+      );
+    else if (currentStep === 3)
+      return (
+        <Step3
+          prevStepHandler={prevStepHandler}
+          nextStepHandler={nextStepHandler}
+        />
+      );
     else if (currentStep === 4) return <Step4 />;
   };
 
@@ -47,12 +63,7 @@ function App() {
         <Box className={classes.wrapper_left}>
           {stepArr.map((data) => {
             return (
-              <Box
-                key={data.step}
-                onClick={() => {
-                  changeStepHandler(data.step);
-                }}
-              >
+              <Box key={data.step}>
                 <Step
                   step={data.step}
                   title={data.title}

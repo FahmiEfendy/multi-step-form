@@ -6,7 +6,7 @@ import ProIcon from "../../assets/icon-pro.svg";
 import ArcadeIcon from "../../assets/icon-arcade.svg";
 import AdvancedIcon from "../../assets/icon-advanced.svg";
 
-const Step2 = () => {
+const Step2 = ({ prevStepHandler, nextStepHandler }) => {
   const [isMonthlyPlan, setIsMonthlyPlan] = useState(true);
 
   const planArr = [
@@ -82,8 +82,10 @@ const Step2 = () => {
         </Typography>
       </Box>
       <Box className={classes.btn_wrapper}>
-        <Button>Go Back</Button>
-        <Button className={classes.btn_next}>Next Step</Button>
+        <Button onClick={prevStepHandler}>Go Back</Button>
+        <Button className={classes.btn_next} onClick={nextStepHandler}>
+          Next Step
+        </Button>
       </Box>
     </Box>
   );
