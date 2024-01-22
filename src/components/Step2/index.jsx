@@ -1,34 +1,61 @@
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Box, Button, Grid, Switch, Typography } from "@mui/material";
 
 import classes from "./style.module.scss";
 import ProIcon from "../../assets/icon-pro.svg";
 import ArcadeIcon from "../../assets/icon-arcade.svg";
 import AdvancedIcon from "../../assets/icon-advanced.svg";
+import { setForm, setStep } from "../../pages/Home/action";
+import { priceFormatter } from "../../utils/priceFormatter";
 
-const Step2 = ({ prevStepHandler, nextStepHandler }) => {
+const Step2 = ({ prevStepHandler }) => {
+  const dispatch = useDispatch();
+
+  const formData = useSelector((state) => state.homeReducer.form);
+  const currentStep = useSelector((state) => state.homeReducer.step);
+
+  const [selectedPlan, setSelectedPlan] = useState([]);
   const [isMonthlyPlan, setIsMonthlyPlan] = useState(true);
 
   const planArr = [
     {
       type: "Arcade",
-      price: "$9/mo",
+      price: 9,
       icon: ArcadeIcon,
     },
     {
       type: "Advanced",
-      price: "$2/mo",
+      price: 12,
       icon: AdvancedIcon,
     },
     {
       type: "Pro",
-      price: "$15/mo",
+      price: 15,
       icon: ProIcon,
     },
   ];
 
   const switchChangeHandler = () => {
     setIsMonthlyPlan((prevState) => !prevState);
+  };
+
+  const getSelectedPlanHandler = (plan, price) => {
+    setSelectedPlan({ plan, price });
+  };
+
+  const goStep3Handler = () => {
+    dispatch(
+      setForm({
+        ...formData,
+        plan: {
+          option: selectedPlan.plan,
+          price: selectedPlan.price,
+          isMonthlyPlan: isMonthlyPlan,
+        },
+      })
+    );
+    dispatch(setStep(currentStep + 1));
   };
 
   return (
@@ -47,14 +74,20 @@ const Step2 = ({ prevStepHandler, nextStepHandler }) => {
       >
         {planArr.map((data, index) => {
           return (
-            <Grid item key={index} xl={4} className={classes.grid_item}>
+            <Grid
+              item
+              key={index}
+              xl={4}
+              className={classes.grid_item}
+              onClick={() => getSelectedPlanHandler(data.type, data.price)}
+            >
               <img src={data.icon} alt={data.type} />
               <Box className={classes.text_wrapper}>
                 <Typography variant="body1" className={classes.text_type}>
                   {data.type}
                 </Typography>
                 <Typography variant="body1" className={classes.text_price}>
-                  {data.price}
+                  {priceFormatter(data.price)}
                 </Typography>
               </Box>
             </Grid>
@@ -83,7 +116,7 @@ const Step2 = ({ prevStepHandler, nextStepHandler }) => {
       </Box>
       <Box className={classes.btn_wrapper}>
         <Button onClick={prevStepHandler}>Go Back</Button>
-        <Button className={classes.btn_next} onClick={nextStepHandler}>
+        <Button className={classes.btn_next} onClick={goStep3Handler}>
           Next Step
         </Button>
       </Box>

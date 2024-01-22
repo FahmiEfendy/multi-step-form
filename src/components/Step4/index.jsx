@@ -1,11 +1,16 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { Box, Button, Divider, Link, Typography } from "@mui/material";
 
 import classes from "./style.module.scss";
 import ThankYouIcon from "../../assets/icon-thank-you.svg";
+import { priceFormatter } from "../../utils/priceFormatter";
 
-const Step4 = () => {
+const Step4 = ({ prevStepHandler }) => {
   const [isSuccess, setIsSuccess] = useState(false);
+
+  const formData = useSelector((state) => state.homeReducer.form);
+  const totalPrice = useSelector((state) => state.homeReducer.totalPrice);
 
   const confirmHandler = () => {
     setIsSuccess(true);
@@ -24,29 +29,51 @@ const Step4 = () => {
           <Box className={classes.summary_container}>
             <Box className={classes.summary_container__inner}>
               <Box className={classes.summary_text}>
-                <Typography variant="body1">Arcade (Monthly)</Typography>
+                <Typography variant="body1">
+                  {formData.plan.option} (
+                  {formData.plan.isMonthlyPlan ? "Monthly" : "Yearly"})
+                </Typography>
                 <Link>Change</Link>
               </Box>
               <Typography variant="body1" className={classes.summary_price}>
-                $9/mo
+                {priceFormatter(formData.plan.price)}
               </Typography>
             </Box>
             <Divider />
-            <Box className={classes.summary_container__inner_sub}>
-              <Typography variant="body1" className={classes.summary_title}>
-                Online Service
-              </Typography>
-              <Typography variant="body1" className={classes.summary_price}>
-                +$1/mo
-              </Typography>
-            </Box>
+            <React.Fragment>
+              {formData.addOns.map((data, index) => {
+                return (
+                  <Box
+                    className={classes.summary_container__inner_sub}
+                    key={index}
+                  >
+                    <Typography
+                      variant="body1"
+                      className={classes.summary_title}
+                    >
+                      {data.title}
+                    </Typography>
+                    <Typography
+                      variant="body1"
+                      className={classes.summary_price}
+                    >
+                      {priceFormatter(data.price, true)}
+                    </Typography>
+                  </Box>
+                );
+              })}
+            </React.Fragment>
           </Box>
           <Box className={classes.summary_total}>
-            <Typography variant="body1">Total (per month)</Typography>
-            <Typography variant="h5">+$12/mo</Typography>
+            <Typography variant="body1">
+              Total (per {formData.plan.isMonthlyPlan ? "month" : "year"})
+            </Typography>
+            <Typography variant="h5">
+              {priceFormatter(totalPrice, true)}
+            </Typography>
           </Box>
           <Box className={classes.btn_wrapper}>
-            <Button>Go Back</Button>
+            <Button onClick={prevStepHandler}>Go Back</Button>
             <Button className={classes.btn_next} onClick={confirmHandler}>
               Confirm
             </Button>
