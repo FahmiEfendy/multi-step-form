@@ -1,4 +1,4 @@
-@import "./styles/base.scss";
+@import "../../styles/base.scss";
 
 body {
   background-color: $magnolia;
@@ -22,7 +22,7 @@ body {
 
     .wrapper_left {
       width: 50%;
-      background-image: url("./assets/bg-sidebar-desktop.svg");
+      background-image: url("../../assets/bg-sidebar-desktop.svg");
       background-repeat: no-repeat;
       background-size: cover;
       border-radius: 10px;
