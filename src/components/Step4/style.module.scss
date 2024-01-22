@@ -101,3 +101,25 @@
     }
   }
 }
+
+.container_success {
+  @include directionY;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+
+  img {
+    width: 100px;
+    height: 100px;
+  }
+
+  h5 {
+    @include font($marine-blue, 32px, $font-weight-bold);
+    margin: 1.5rem 0 1rem;
+  }
+
+  p {
+    text-align: center;
+    @include font($cool-gray, 18px, $font-weight-regular);
+  }
+}
