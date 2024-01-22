@@ -66,6 +66,11 @@
     align-items: center;
     margin-top: 2rem;
 
+
+    .switch{
+      margin: 0 1rem
+    }
+
     .switcher_text {
       @include font($cool-gray, 16px, $font-weight-medium);
     }

@@ -84,9 +84,9 @@ const Step3 = ({ prevStepHandler }) => {
           let isSelected = checked.find((c) => c.title === data.title);
 
           return (
-            // TODO: Remove Background Color When Hovered
             <ListItem key={index} className={activeAddOnStyle(isSelected)}>
               <ListItemButton
+                className={classes.list_wrapper__inner}
                 onClick={() => {
                   getAddOnsHandler(data);
                 }}

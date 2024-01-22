@@ -21,23 +21,23 @@
       margin-top: 1rem;
       padding: 1rem;
 
-      div:hover {
-        background-color: none;
-      }
+      .list_wrapper__inner {
+        color: transparent;
 
-      .text_wrapper {
-        @include directionY;
+        .text_wrapper {
+          @include directionY;
 
-        div {
-          margin: 0;
-        }
+          div {
+            margin: 0;
+          }
 
-        .title span {
-          @include font($marine-blue, 18px, $font-weight-bold);
-        }
+          .title span {
+            @include font($marine-blue, 18px, $font-weight-bold);
+          }
 
-        .desc span {
-          @include font($cool-gray, 16px, $font-weight-medium);
+          .desc span {
+            @include font($cool-gray, 16px, $font-weight-medium);
+          }
         }
       }
 

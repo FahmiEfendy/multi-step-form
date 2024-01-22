@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Box, Button, Grid, Switch, Typography } from "@mui/material";
+import { Box, Button, Grid, Typography } from "@mui/material";
 
+import AntSwitch from "../Switch";
 import classes from "./style.module.scss";
 import ProIcon from "../../assets/icon-pro.svg";
 import ArcadeIcon from "../../assets/icon-arcade.svg";
@@ -138,8 +139,11 @@ const Step2 = ({ prevStepHandler }) => {
         >
           Monthly
         </Typography>
-        {/* TODO: Fix Styling */}
-        <Switch checked={!isMonthlyPlan} onChange={switchChangeHandler} />
+        <AntSwitch
+          className={classes.switch}
+          checked={!isMonthlyPlan}
+          onChange={switchChangeHandler}
+        />
         <Typography
           variant="body1"
           className={
